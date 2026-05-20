@@ -6,9 +6,11 @@ import { useAuth } from "@/lib/auth";
 const links = [
   { to: "/", label: "Home" },
   { to: "/dashboard", label: "Dashboard" },
+  { to: "/optimize", label: "Optimize" },
   { to: "/split-pay", label: "Split Pay" },
   { to: "/subscriptions", label: "Subscriptions" },
   { to: "/health-claims", label: "Health Claims" },
+  { to: "/about", label: "About Us" },
 ];
 
 export function Navbar() {
