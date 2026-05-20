@@ -99,10 +99,17 @@ function Dashboard() {
       <section>
         <h3 className="text-xs uppercase tracking-widest text-muted-foreground mb-3 font-semibold">Financial Orchestration</h3>
         <div className="grid md:grid-cols-4 gap-3">
-          <Shortcut to="/dashboard" icon={Zap} title="Optimize Purchase" desc="Instant card switching" />
+          <Shortcut to="/optimize" icon={Zap} title="Optimize Purchase" desc="Instant card switching" />
           <Shortcut to="/split-pay" icon={Users} title="Split Bill" desc="Smart group expense sharing" />
           <Shortcut to="/subscriptions" icon={Receipt} title="Audit Subscriptions" desc="Find leaky recurring charges" />
           <Shortcut to="/health-claims" icon={HeartPulse} title="Claim Health" desc="Verify medical benefits" />
+        </div>
+
+        <div className="mt-4 rounded-2xl border border-amber-300 bg-amber-50 p-4 flex items-start gap-3">
+          <div className="w-9 h-9 rounded-xl bg-amber-200 text-amber-900 grid place-items-center shrink-0"><TrendingUp className="w-4 h-4" /></div>
+          <div className="text-sm text-amber-900">
+            <span className="font-bold">Heads up:</span> For every penny Orchestra saves you, a <span className="font-bold">10% service fee</span> is automatically deducted. The other 90% stays in your wallet.
+          </div>
         </div>
       </section>
 
