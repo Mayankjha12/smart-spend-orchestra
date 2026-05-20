@@ -66,8 +66,13 @@ function SignupPage() {
   );
 }
 
-function Field({ icon: Icon, ...props }: { icon: any } & React.InputHTMLAttributes<HTMLInputElement> & { onChange: (v: string) => void; value: string }) {
-  const { onChange, value, ...rest } = props;
+type FieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange" | "value"> & {
+  icon: any;
+  value: string;
+  onChange: (v: string) => void;
+};
+
+export function Field({ icon: Icon, value, onChange, ...rest }: FieldProps) {
   return (
     <div className="relative">
       <Icon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
