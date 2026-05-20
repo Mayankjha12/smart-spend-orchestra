@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LinkUpiRouteImport } from './routes/link-upi'
+import { Route as LinkBankRouteImport } from './routes/link-bank'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SignupRoute = SignupRouteImport.update({
@@ -29,6 +30,11 @@ const LinkUpiRoute = LinkUpiRouteImport.update({
   path: '/link-upi',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LinkBankRoute = LinkBankRouteImport.update({
+  id: '/link-bank',
+  path: '/link-bank',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,12 +43,14 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/link-bank': typeof LinkBankRoute
   '/link-upi': typeof LinkUpiRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/link-bank': typeof LinkBankRoute
   '/link-upi': typeof LinkUpiRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/link-bank': typeof LinkBankRoute
   '/link-upi': typeof LinkUpiRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/link-upi' | '/login' | '/signup'
+  fullPaths: '/' | '/link-bank' | '/link-upi' | '/login' | '/signup'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/link-upi' | '/login' | '/signup'
-  id: '__root__' | '/' | '/link-upi' | '/login' | '/signup'
+  to: '/' | '/link-bank' | '/link-upi' | '/login' | '/signup'
+  id: '__root__' | '/' | '/link-bank' | '/link-upi' | '/login' | '/signup'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LinkBankRoute: typeof LinkBankRoute
   LinkUpiRoute: typeof LinkUpiRoute
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
@@ -92,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LinkUpiRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/link-bank': {
+      id: '/link-bank'
+      path: '/link-bank'
+      fullPath: '/link-bank'
+      preLoaderRoute: typeof LinkBankRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LinkBankRoute: LinkBankRoute,
   LinkUpiRoute: LinkUpiRoute,
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
