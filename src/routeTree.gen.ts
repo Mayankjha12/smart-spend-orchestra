@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SplitPayRouteImport } from './routes/split-pay'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LinkUpiRouteImport } from './routes/link-upi'
@@ -16,6 +17,11 @@ import { Route as LinkBankRouteImport } from './routes/link-bank'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SplitPayRoute = SplitPayRouteImport.update({
+  id: '/split-pay',
+  path: '/split-pay',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/link-upi': typeof LinkUpiRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/split-pay': typeof SplitPayRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/link-upi': typeof LinkUpiRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/split-pay': typeof SplitPayRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/link-upi': typeof LinkUpiRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/split-pay': typeof SplitPayRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,8 +90,16 @@ export interface FileRouteTypes {
     | '/link-upi'
     | '/login'
     | '/signup'
+    | '/split-pay'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/link-bank' | '/link-upi' | '/login' | '/signup'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/link-bank'
+    | '/link-upi'
+    | '/login'
+    | '/signup'
+    | '/split-pay'
   id:
     | '__root__'
     | '/'
@@ -91,6 +108,7 @@ export interface FileRouteTypes {
     | '/link-upi'
     | '/login'
     | '/signup'
+    | '/split-pay'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -100,10 +118,18 @@ export interface RootRouteChildren {
   LinkUpiRoute: typeof LinkUpiRoute
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
+  SplitPayRoute: typeof SplitPayRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/split-pay': {
+      id: '/split-pay'
+      path: '/split-pay'
+      fullPath: '/split-pay'
+      preLoaderRoute: typeof SplitPayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/signup': {
       id: '/signup'
       path: '/signup'
@@ -156,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   LinkUpiRoute: LinkUpiRoute,
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
+  SplitPayRoute: SplitPayRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
