@@ -15,6 +15,7 @@ import { Route as SignupRouteImport } from './routes/signup'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LinkUpiRouteImport } from './routes/link-upi'
 import { Route as LinkBankRouteImport } from './routes/link-bank'
+import { Route as HealthClaimsRouteImport } from './routes/health-claims'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -48,6 +49,11 @@ const LinkBankRoute = LinkBankRouteImport.update({
   path: '/link-bank',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HealthClaimsRoute = HealthClaimsRouteImport.update({
+  id: '/health-claims',
+  path: '/health-claims',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -62,6 +68,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/health-claims': typeof HealthClaimsRoute
   '/link-bank': typeof LinkBankRoute
   '/link-upi': typeof LinkUpiRoute
   '/login': typeof LoginRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/health-claims': typeof HealthClaimsRoute
   '/link-bank': typeof LinkBankRoute
   '/link-upi': typeof LinkUpiRoute
   '/login': typeof LoginRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/health-claims': typeof HealthClaimsRoute
   '/link-bank': typeof LinkBankRoute
   '/link-upi': typeof LinkUpiRoute
   '/login': typeof LoginRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/health-claims'
     | '/link-bank'
     | '/link-upi'
     | '/login'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/dashboard'
+    | '/health-claims'
     | '/link-bank'
     | '/link-upi'
     | '/login'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/dashboard'
+    | '/health-claims'
     | '/link-bank'
     | '/link-upi'
     | '/login'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
+  HealthClaimsRoute: typeof HealthClaimsRoute
   LinkBankRoute: typeof LinkBankRoute
   LinkUpiRoute: typeof LinkUpiRoute
   LoginRoute: typeof LoginRoute
@@ -178,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LinkBankRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/health-claims': {
+      id: '/health-claims'
+      path: '/health-claims'
+      fullPath: '/health-claims'
+      preLoaderRoute: typeof HealthClaimsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
+  HealthClaimsRoute: HealthClaimsRoute,
   LinkBankRoute: LinkBankRoute,
   LinkUpiRoute: LinkUpiRoute,
   LoginRoute: LoginRoute,
