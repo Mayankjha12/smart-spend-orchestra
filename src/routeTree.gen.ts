@@ -12,11 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SubscriptionsRouteImport } from './routes/subscriptions'
 import { Route as SplitPayRouteImport } from './routes/split-pay'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as OptimizeRouteImport } from './routes/optimize'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LinkUpiRouteImport } from './routes/link-upi'
 import { Route as LinkBankRouteImport } from './routes/link-bank'
 import { Route as HealthClaimsRouteImport } from './routes/health-claims'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SubscriptionsRoute = SubscriptionsRouteImport.update({
@@ -32,6 +34,11 @@ const SplitPayRoute = SplitPayRouteImport.update({
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OptimizeRoute = OptimizeRouteImport.update({
+  id: '/optimize',
+  path: '/optimize',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -59,6 +66,11 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -67,22 +79,26 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/dashboard': typeof DashboardRoute
   '/health-claims': typeof HealthClaimsRoute
   '/link-bank': typeof LinkBankRoute
   '/link-upi': typeof LinkUpiRoute
   '/login': typeof LoginRoute
+  '/optimize': typeof OptimizeRoute
   '/signup': typeof SignupRoute
   '/split-pay': typeof SplitPayRoute
   '/subscriptions': typeof SubscriptionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/dashboard': typeof DashboardRoute
   '/health-claims': typeof HealthClaimsRoute
   '/link-bank': typeof LinkBankRoute
   '/link-upi': typeof LinkUpiRoute
   '/login': typeof LoginRoute
+  '/optimize': typeof OptimizeRoute
   '/signup': typeof SignupRoute
   '/split-pay': typeof SplitPayRoute
   '/subscriptions': typeof SubscriptionsRoute
@@ -90,11 +106,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/dashboard': typeof DashboardRoute
   '/health-claims': typeof HealthClaimsRoute
   '/link-bank': typeof LinkBankRoute
   '/link-upi': typeof LinkUpiRoute
   '/login': typeof LoginRoute
+  '/optimize': typeof OptimizeRoute
   '/signup': typeof SignupRoute
   '/split-pay': typeof SplitPayRoute
   '/subscriptions': typeof SubscriptionsRoute
@@ -103,33 +121,39 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/dashboard'
     | '/health-claims'
     | '/link-bank'
     | '/link-upi'
     | '/login'
+    | '/optimize'
     | '/signup'
     | '/split-pay'
     | '/subscriptions'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/dashboard'
     | '/health-claims'
     | '/link-bank'
     | '/link-upi'
     | '/login'
+    | '/optimize'
     | '/signup'
     | '/split-pay'
     | '/subscriptions'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/dashboard'
     | '/health-claims'
     | '/link-bank'
     | '/link-upi'
     | '/login'
+    | '/optimize'
     | '/signup'
     | '/split-pay'
     | '/subscriptions'
@@ -137,11 +161,13 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   DashboardRoute: typeof DashboardRoute
   HealthClaimsRoute: typeof HealthClaimsRoute
   LinkBankRoute: typeof LinkBankRoute
   LinkUpiRoute: typeof LinkUpiRoute
   LoginRoute: typeof LoginRoute
+  OptimizeRoute: typeof OptimizeRoute
   SignupRoute: typeof SignupRoute
   SplitPayRoute: typeof SplitPayRoute
   SubscriptionsRoute: typeof SubscriptionsRoute
@@ -168,6 +194,13 @@ declare module '@tanstack/react-router' {
       path: '/signup'
       fullPath: '/signup'
       preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/optimize': {
+      id: '/optimize'
+      path: '/optimize'
+      fullPath: '/optimize'
+      preLoaderRoute: typeof OptimizeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -205,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -217,11 +257,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   DashboardRoute: DashboardRoute,
   HealthClaimsRoute: HealthClaimsRoute,
   LinkBankRoute: LinkBankRoute,
   LinkUpiRoute: LinkUpiRoute,
   LoginRoute: LoginRoute,
+  OptimizeRoute: OptimizeRoute,
   SignupRoute: SignupRoute,
   SplitPayRoute: SplitPayRoute,
   SubscriptionsRoute: SubscriptionsRoute,
