@@ -97,7 +97,7 @@ const UPI_OPTIONS = ["Paytm", "PhonePe", "GPay"];
 const BANK_OPTIONS = ["HDFC", "ICICI", "SBI", "Axis", "Goldman Sachs"];
 
 function OptimizePage() {
-  const { user } = useAuth();
+  const { user, addSaving } = useAuth();
   const nav = useNavigate();
   useEffect(() => { if (!user) nav({ to: "/login" }); }, [user, nav]);
 
@@ -243,7 +243,12 @@ function OptimizePage() {
 
       {/* CTA */}
       <button
-        onClick={() => setConfirmed(true)}
+        onClick={() => {
+          if (best && grossSave > 0 && !confirmed) {
+            addSaving({ source: "optimize", amount: grossSave, note: `${category} via ${best.provider}` });
+          }
+          setConfirmed(true);
+        }}
         className="w-full rounded-2xl bg-foreground text-background font-semibold py-4 inline-flex items-center justify-center gap-2 hover:opacity-90 transition"
       >
         Confirm Spend <ArrowRight className="w-4 h-4" />
