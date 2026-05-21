@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Sparkles, ShieldCheck, Zap, Users, HeartPulse } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
@@ -43,12 +43,6 @@ function AboutPage() {
           <Stat n="98%" l="Reward capture" />
           <Stat n="50K+" l="Happy users" />
         </div>
-      </section>
-
-      <section className="text-center">
-        <Link to="/signup" className="inline-flex items-center gap-2 px-6 py-3 rounded-full gradient-brand text-white font-semibold shadow-brand">
-          Join Orchestra <Sparkles className="w-4 h-4" />
-        </Link>
       </section>
     </div>
   );
